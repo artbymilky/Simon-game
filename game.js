@@ -7,6 +7,10 @@ var sequence = [];
 
 var playersPressedButtons = [];
 
+$("h1").on("click",function()
+{
+nextSequence();
+})
 /****************** GAME CHOSEN COLOR ********************/
 function nextSequence() {
   userClickedPattern = [];
@@ -69,7 +73,7 @@ function cssTrigger(input) {
 }
 /****************** GAME-OVER FUNCTION ********************/
 function gameOver() {
-  $('h1').text('Game Over, Press Any Key to Restart');
+  $('h1').text('Game Over, Click Me or Press Any Key to Restart');
   playAudio('wrong');
   $('body').addClass('game-over');
   setTimeout(function () {
