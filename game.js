@@ -3,15 +3,18 @@ var userClickedPattern = [];
 var gamePattern = [];
 
 var sequence = [];
-
+var isPlaying = false;
 var playersPressedButtons = [];
 
 $("h1").on("click",function()
 {
+  if (level === 1) return
 nextSequence();
+
 })
 /****************** GAME CHOSEN COLOR ********************/
 function nextSequence() {
+  isPlaying = true;
   userClickedPattern = [];
   level++;
   var randomNumber = Math.floor(Math.random() * 4);
@@ -20,20 +23,22 @@ function nextSequence() {
   gamePattern.push(randomChosenColor);
   cssTrigger(randomChosenColor);
   playAudio(randomChosenColor);
-  
   $('h1').text('Level ' + level);
 }
 /****************** USER CHOSEN COLOR ********************/
 $('#green, #yellow, #red, #blue').on('click', function (event) {
+  if (!isPlaying) return
   var userChosenColor = event.currentTarget.id;
   userClickedPattern.push(userChosenColor);
   playAudio(userChosenColor);
   cssTrigger(userChosenColor);
   checkAnswer(userClickedPattern.length);
+
 });
 
 $('body').keypress(function () {
   nextSequence();
+  
 });
 
 var level = 0;
